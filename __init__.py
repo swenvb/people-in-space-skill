@@ -30,7 +30,12 @@ class PeopleInSpace(MycroftSkill):
         names = []
         for item in result['people']:
             names.append(item['name'])
-        people_in_space = " ".join(names)
+        people_in_space = names[0]
+        i = 1
+        while i < len(result['people'])-1:
+            people_in_space = people_in_space + ", " + names[i]
+            i += 1
+        people_in_space = people_in_space + " and " + names[i]
         self.speak_dialog('who.is.in.space', {'names': people_in_space})
 
 def create_skill():
